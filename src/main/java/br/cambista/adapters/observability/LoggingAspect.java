@@ -16,20 +16,28 @@ public class LoggingAspect {
 
     private static Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
-    @Pointcut("within(@org.springframework.stereotype.Controller *)" +
+/*    @Pointcut("within(@org.springframework.stereotype.Controller *)" +
             "within(@org.springframework.stereotype.Component *)" +
             "within(@org.springframework.stereotype.Service *)" +
-            "execution(public * br.cambista.*.*(..))")
+            "execution(public * br.cambista.*.*(..))")*/
+    @Pointcut("execution(public * br.cambista..*.*(..))")
     private void publicMethodsFromLoggingPackage() {
     }
 
     @Around(value = "publicMethodsFromLoggingPackage()")
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
-        Object[] args = joinPoint.getArgs();
-        String methodName = joinPoint.getSignature().getName();
-        logger.info(">> {}() - {}", methodName, Arrays.toString(args));
-        Object result = joinPoint.proceed();
-        logger.info("<< {}() - {}", methodName, result);
-        return result;
+        try {
+            Object[] args = joinPoint.getArgs();
+            String methodName = joinPoint.getSignature().getName();
+            logger.info(">> {}() - {}", methodName, Arrays.toString(args));
+            Object result = joinPoint.proceed();
+            logger.info("<< {}() - {}", methodName, result);
+            return result;
+        } catch (Throwable e) {
+            logger.error(e.getMessage(), e);
+            logger.info("Retry Operation");
+            return joinPoint.proceed(joinPoint.getArgs());
+        }
+
     }
 }
