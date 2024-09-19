@@ -20,10 +20,10 @@ public class LoggingAspect {
             "within(@org.springframework.stereotype.Component *)" +
             "within(@org.springframework.stereotype.Service *)" +
             "execution(public * br.cambista.*.*(..))")
-    private void publicMethodsFromLoggingPackage() {
+    public void publicMethodsFromLoggingPackage() {
     }
 
-    @Around(value = "publicMethodsFromLoggingPackage()")
+    @Around("publicMethodsFromLoggingPackage()")
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs();
         String methodName = joinPoint.getSignature().getName();
