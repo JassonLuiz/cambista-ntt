@@ -16,9 +16,9 @@ public class LoggingAspect {
 
     private static Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
-    @Pointcut("within(@org.springframework.stereotype.Controller *)" +
-            "within(@org.springframework.stereotype.Component *)" +
-            "within(@org.springframework.stereotype.Service *)" +
+    @Pointcut("within(@org.springframework.web.bind.annotation.RestController *) || " +
+            "within(@org.springframework.stereotype.Component *) || " +
+            "within(@org.springframework.stereotype.Service *) || " +
             "execution(public * br.cambista.*.*(..))")
     public void publicMethodsFromLoggingPackage() {
     }
