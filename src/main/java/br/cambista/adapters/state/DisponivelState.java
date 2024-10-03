@@ -8,7 +8,7 @@ public class DisponivelState implements TicketState{
 
     @Override
     public String reservar(Ingresso ingresso) {
-        ingresso.setState(new ReservadoState());
+        //ingresso.setState(new ReservadoState());
         return "Ingresso reservado com sucesso.";
     }
 

@@ -1,8 +1,9 @@
-package br.cambista.domains.models;
+package br.cambista.adapters.integration.entity;
 
+import br.cambista.domains.models.Ingresso;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,21 +12,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Builder
-public class Evento {
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "eventos")
+public class EventoEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
     private Long totalIngressos;
     private String usuarioCriacao;
     private LocalDateTime dataCriacao;
 
-    private List<Ingresso> ingressos;
-
+    @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
+    private List<IngressoEntity> ingressos;
 
     @Override
     public String toString() {
         return "Evento{id=" + id + ", nome='" + nome + "', totalIngressos=" + totalIngressos + "}";
     }
-
 }

@@ -11,19 +11,19 @@ public class ReservadoState implements TicketState{
 
     @Override
     public String pagar(Ingresso ingresso) {
-        ingresso.setState(new PagoState());
+        //ingresso.setState(new PagoState());
         return "Pagamento realizado com sucesso.";
     }
 
     @Override
     public String cancelar(Ingresso ingresso) {
-        ingresso.setState(new DisponivelState());
+        //ingresso.setState(new DisponivelState());
         return "Reserva cancelada.";
     }
 
     @Override
     public String expirar(Ingresso ingresso) {
-        ingresso.setState(new DisponivelState());
+        //ingresso.setState(new DisponivelState());
         return "Reserva expirada.";
     }
 }

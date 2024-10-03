@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class EventoResponse {
 
-    private Long idTeste;
     private String id;
     private String nome;
     private Long totalIngressos;

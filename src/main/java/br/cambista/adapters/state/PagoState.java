@@ -16,7 +16,7 @@ public class PagoState implements TicketState {
 
     @Override
     public String cancelar(Ingresso ingresso) {
-        ingresso.setState(new ReembolsadoState());
+        //ingresso.setState(new ReembolsadoState());
         return "Ingresso cancelado e reembolso realizado.";
     }
 
