@@ -3,9 +3,7 @@ package br.cambista.adapters.integration.entity;
 import br.cambista.domains.models.Ingresso;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,6 +12,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"ingressos"})
+@EqualsAndHashCode(exclude = {"ingressos"})
 @Entity
 @Table(name = "eventos")
 public class EventoEntity {

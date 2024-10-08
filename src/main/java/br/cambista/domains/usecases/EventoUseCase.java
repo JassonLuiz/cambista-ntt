@@ -23,7 +23,6 @@ public class EventoUseCase {
         var ingressos = new ArrayList<Ingresso>();
         for (int i = 0; i < evento.getTotalIngressos(); i++){
             ingressos.add(Ingresso.builder()
-                    .evento(evento)
                     .build());
         }
         evento.setIngressos(ingressos);
