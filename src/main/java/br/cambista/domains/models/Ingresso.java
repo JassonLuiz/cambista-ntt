@@ -16,9 +16,10 @@ public class Ingresso {
 
     private Long id;
     private Cliente cliente;
-    private Evento evento;
+    private String nomeEvento;
     private LocalDateTime dataCompra;
     private IngressoEnum status;
+
     @Override
     public String toString() {
         return "Ingresso{id=" + id + ", cliente=" + (cliente != null ? cliente.getId() : "null") + "}";

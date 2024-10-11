@@ -2,6 +2,7 @@ package br.cambista.domains.usecases;
 
 import br.cambista.adapters.integration.jpa.EventoRepository;
 import br.cambista.adapters.integration.mapper.EventoEntityMapper;
+import br.cambista.domains.enumx.IngressoEnum;
 import br.cambista.domains.models.Evento;
 import br.cambista.domains.models.Ingresso;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class EventoUseCase {
     public Evento salvar(Evento evento){
         var ingressos = new ArrayList<Ingresso>();
         for (int i = 0; i < evento.getTotalIngressos(); i++){
-            ingressos.add(Ingresso.builder()
+            ingressos.add(Ingresso.builder().status(IngressoEnum.DISPONIVEL)
                     .build());
         }
         evento.setIngressos(ingressos);

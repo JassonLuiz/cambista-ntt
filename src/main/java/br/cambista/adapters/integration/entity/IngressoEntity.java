@@ -35,6 +35,7 @@ public class IngressoEntity {
     @JsonBackReference
     private EventoEntity evento;
 
+    @Enumerated(EnumType.STRING)
     private IngressoEnum status;
 
     private LocalDateTime dataCompra;
